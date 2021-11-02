@@ -1,15 +1,38 @@
-       Random random = new Random();
-        String [][] board = new String[10][10];
-        for (int i = 0; i < board.length; i++) {
-        for (int j=0;j < board[i].length;j++){
-            board[i][j] = "[]";
+package com.company;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        Scanner input = new Scanner(System.in);
+        int[][] treasure = new int[10][10];
+        int amount = 0;
+        String guess;
+        int score = 0;
+
+        for(int i = 0; i < treasure.length; i++){
+            for(int j = 0; j < treasure[i].length; j++){
+                treasure[i][j] = random.nextInt(2);
+                amount += treasure[i][j];
             }
-            System.out.println(Arrays.deepToString(board));
+        }
+        System.out.println(Arrays.toString(treasure[0]));
+
+        for(int i = 0; i < amount; i++){
+            System.out.print("Enter coordinates of treasure (x,y): ");
+            guess = input.next();
+            if(treasure[guess.charAt(1)][guess.charAt(3)] == 1){
+                score += 1;
+                System.out.println("You found a piece of treasure!");
+            }else{
+                System.out.println("You didn't find anything");
+            }
         }
 
-
-
-
-//random.nextInt(2);
+        System.out.print("Your score is: " + score);
     }
 }
